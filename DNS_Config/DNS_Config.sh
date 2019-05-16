@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
+#Entra com o DNS primario
 _dnsP=$(zenity --title="DNS_Config" --text "Enter Primary DNS" --entry)
+
+#Entra com o DNS secundario
 _dnsS=$(zenity --title="DNS_Config" --text "Enter Secondary DNS" --entry)
 zenity --info --title="DNS_Config" --text="Primary DNS $_dnsP \nSecondary DNS $_dnsS" --width="200" --height="100"
 
