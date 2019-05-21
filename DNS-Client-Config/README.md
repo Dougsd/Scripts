@@ -15,7 +15,7 @@ Call the program by its terminal like command:<br/>
 `$zenity`<br/>
 
 If you have a return as:<br/>
-`$ Unknown command dialog`<br/>
+`$ Unknown command zenity`<br/>
 So you do not have the program installed<br/>
 
 To install it on Debian-based distributions simply use the command:<br/>
