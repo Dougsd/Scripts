@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #author: Karan Luciano
-#describle: Configuracao DNS
+#describle: Configuracao REDE, Servidor DHCP e DNS
 #version: 0.1
 #license: GNU GENERAL PUBLIC LICENSE
 
@@ -14,12 +14,14 @@ endip4=$(echo $ip4 |sed 's/192.168.0.//g')
 endip6=$(echo $ip6 |sed 's/.*:://g')
 
 Menu(){
-	echo "[ 1 ] CONFIGURAR A REDE NETPLAN"
+	echo "[ 1 ] CONFIGURAR A REDE"
 	echo "[ 2 ] COLOCAR HOSTNAME NO /ETC/HOSTS"
 	echo "[ 3 ] LIMPA SCOPO/RESERVAS E COMECAR UM NOVO"
 	echo "[ 4 ] ADCIONAR RESERVA"
 	echo "[ 5 ] LIMPAR TODAS AS ZONAS E COMECAR UMA NOVA"
 	echo "[ 6 ] ADICIONAR A UM ZONA JA EXISTENTE"
+	echo "[ 7 ] INSTALR ISC-DHCP-SERVER"
+	echo "[ 8 ] INSTALR BIND9"
 	echo "[ 0 ] SAIR"
 	echo -e '\033[05;31mQUAL A OPCAO DESEJADA?\033[00;37m' 
 	read opcao
@@ -28,9 +30,11 @@ Menu(){
 		1) Rede ;;
 		2) Hostname ;;
 		3) Scopo ;;
-		3) Reserva ;;
+		4) Reserva ;;
 		5) Novo ;;
 		6) Adicionar ;;
+		7) Isc ;;
+		8) Bind ;;
 		0) exit ;;
 	esac
 }
@@ -41,9 +45,23 @@ Rede(){
 	ls $DIR 2> /dev/null
 
 	if [ $? -ne 0 ]; then
-		echo -e "\033[05;31mVOCE NAO TEM O NETPLAN\033[00;37m" 
+		echo -e "\033[05;31mCONFIGURA APENAS OS DISPOSITIVOS 'ENP'\033[00;37m" 		
+		dispo=$(ip a |grep enp |awk '{print $2}' |head -n 1| sed 's/://g')			
+		echo "Qual o IPv4 desejado?"
+		read ifip
+		echo "Qual a mascara? (EX 255.255.0.0)"
+		read ifmask
+		echo "Qual o gateway? "
+		read ifroute
+		echo "Qual o IPv6 desejado?"
+		read ifip6
+		echo "Qual a mascara? (EX 64)"
+		read ifmask6		
+		ifconfig $dispo $ifip netmask $ifmask up
+		route add default gw $ifroute
+		ifconfig $dispo inet6 add $ifip6/$ifmask6
+		clear		
 	else
-		echo -e "\033[05;31mCONFIGURA REDES NETPLAN\033[00;37m" 
 		echo -e "\033[05;31mCONFIGURA APENAS OS DISPOSITIVOS 'ENP'\033[00;37m" 
 		echo "Qual o IPv4 com a mascara reduzida (ex: 192.168.0.1/24): "
 		read ip4
@@ -71,7 +89,7 @@ Hostname(){
 	Menu 
 }
 
-Scopo(){
+Scopo(){	
 	echo -e "#CRIANDO SCOPO PARA DHCP\n#Subnet adicionado pelo Sript. By: Karan\n#option domain-name 'example.org';\noption domain-name-servers ns1.example.org, ns2.example.org;\ndefault-lease-time 600;\nmax-lease-time 7200;\nddns-update-style none;\nauthoritative;" > /etc/dhcp/dhcpd.conf
 	echo "Diga a REDE: "
 	read rede
@@ -164,6 +182,20 @@ Adicionar(){
 	echo -e "\n$nome	IN	A	$ip4\n$nome	IN	AAAA	$ip6\n$apelido	IN	CNAME	$nome" >> /etc/bind/db.local
 	
 	/etc/init.d/bind9 restart
+	Menu
+}
+
+Isc(){
+	sudo apt update	
+	sudo apt install isc-dhcp-server -y
+	clear
+	Menu	
+}
+
+Bind(){
+	sudo apt update	
+	sudo apt install bind9 -y
+	clear
 	Menu
 }	
 Menu
