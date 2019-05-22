@@ -77,6 +77,7 @@ Rede(){
 		dispo=$(ip a |grep enp |awk '{print $2}' |head -n 1)
 		aux=$(ls /etc/netplan/)
 		echo -e "network:\n   ethernets:\n      $dispo\n         dhcp4: false\n         dhcp6: false\n         addresses: [$ip4, \"$ip6\"]\n         gateway4: $gate4\n         gateway6: $gate6\n   version: 2" > /etc/netplan/$aux	
+		clear
 		netplan apply
 	fi
 	Menu
