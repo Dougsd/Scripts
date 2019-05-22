@@ -207,6 +207,8 @@ Adicionar(){
 	echo -e "\n$nome	IN	A	$ip4\n$nome	IN	AAAA	$ip6\n$apelido	IN	CNAME	$nome" >> /etc/bind/db.local
 	
 	/etc/init.d/bind9 restart
+	clear
+	/etc/init.d/bind9 status
 	Menu
 }
 
