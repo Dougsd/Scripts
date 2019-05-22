@@ -14,7 +14,7 @@ endip4=$(echo $ip4 |sed 's/192.168.0.//g')
 endip6=$(echo $ip6 |sed 's/.*:://g')
 
 Menu(){
-	echo -e '\033[05;31mEXECUTE COM PERMISSAO ROOT\033[00;37m' 
+	echo -e '\033[07;32mEXECUTE COM PERMISSAO ROOT\033[00;37m' 
 	echo "[ 1 ] INSTALR ISC-DHCP-SERVER"
 	echo "[ 2 ] INSTALR BIND9"
 	echo "[ 3 ] CONFIGURAR A REDE"
@@ -24,7 +24,7 @@ Menu(){
 	echo "[ 7 ] LIMPAR TODAS AS ZONAS E COMECAR UMA NOVA"
 	echo "[ 8 ] ADICIONAR A UM ZONA JA EXISTENTE"
 	echo "[ 0 ] SAIR"
-	echo -e '\033[05;31mQUAL A OPCAO DESEJADA?\033[00;37m' 
+	echo -e '\033[07;31mQUAL A OPCAO DESEJADA?\033[00;37m' 
 	read opcao
 
 	case $opcao in
@@ -47,7 +47,7 @@ Rede(){
 
 	if [ $? -ne 0 ]; then
 		clear
-		echo -e "\033[05;31mCONFIGURA APENAS OS DISPOSITIVOS 'ENP'\033[00;37m" 		
+		echo -e "\033[07;31mCONFIGURA APENAS OS DISPOSITIVOS 'ENP'\033[00;37m" 		
 		dispo=$(ip a |grep enp |awk '{print $2}' |head -n 1| sed 's/://g')			
 		echo "Qual o IPv4 desejado?"
 		read ifip
@@ -65,7 +65,7 @@ Rede(){
 		clear		
 	else
 		clear
-		echo -e "\033[05;31mCONFIGURA APENAS OS DISPOSITIVOS 'ENP'\033[00;37m" 
+		echo -e "\033[07;31mCONFIGURA APENAS OS DISPOSITIVOS 'ENP'\033[00;37m" 
 		echo "Qual o IPv4 com a mascara reduzida (ex: 192.168.0.1/24): "
 		read ip4
 		echo "Qual o Gateway4: "
@@ -89,7 +89,7 @@ Hostname(){
 	sed -i "1s/^/$aux6\n/" /etc/hosts
 	aux4=$(echo $_ip4    $hostname.ubuntu.local    $hostname)
 	sed -i "1s/^/$aux4\n/" /etc/hosts
-	echo -e '\033[05;31mADICIONADO, REINICIE O SEU COMPUTADOR PARA QUE A MUDANCA TENHA EFEITO\033[00;37m' 
+	echo -e '\033[07;31mADICIONADO, REINICIE O SEU COMPUTADOR PARA QUE A MUDANCA TENHA EFEITO\033[00;37m' 
 	Menu 
 }
 
@@ -112,7 +112,7 @@ Scopo(){
 }	
 
 Reserva(){
-	echo -e '\033[05;31mCRIANDO RESERVAS\033[00;37m'   
+	echo -e '\033[07;31mCRIANDO RESERVAS\033[00;37m'   
 	echo "Diga o MAC: "
 	read mac
 	if [[ $mac =~ ^[0-9A-Fa-f]{12}$ ]]
@@ -145,7 +145,7 @@ Novo(){
 	echo -e "\nubuntu.local.	IN	NS	$hostname.ubuntu.local.\nubuntu.local.	IN	A	$_ip4\nubuntu.local.	IN	AAAA	$_ip6\n" >>  /etc/bind/db.local
 	echo -e "\n$hostname	IN	A	$_ip4\n$hostname	IN	AAAA	$_ip6\nservidor	IN	CNAME	$hostname" >> /etc/bind/db.local
 
-	echo -e '\033[05;31mADICIONANDO  NOVAS MAQUINAS AO DNS\033[00;37m'   
+	echo -e '\033[07;31mADICIONANDO  NOVAS MAQUINAS AO DNS\033[00;37m'   
 
 	echo "Diga o NOME da maquina: "
 	read nome
@@ -169,7 +169,7 @@ Novo(){
 Adicionar(){	
 	hostname=$(cat /etc/hostname)
 
-	echo -e '\033[05;31mADICIONANDO  NOVAS MAQUINAS AO DNS\033[00;37m'   
+	echo -e '\033[07;31mADICIONANDO  NOVAS MAQUINAS AO DNS\033[00;37m'   
 	echo "Diga o NOME da maquina: "
 	read nome
 	echo "Diga o IPv4 da maquina: "
