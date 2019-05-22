@@ -14,27 +14,27 @@ endip4=$(echo $ip4 |sed 's/192.168.0.//g')
 endip6=$(echo $ip6 |sed 's/.*:://g')
 
 Menu(){
-	echo "[ 1 ] CONFIGURAR A REDE"
-	echo "[ 2 ] COLOCAR HOSTNAME NO /ETC/HOSTS"
-	echo "[ 3 ] LIMPA SCOPO/RESERVAS E COMECAR UM NOVO"
-	echo "[ 4 ] ADCIONAR RESERVA"
-	echo "[ 5 ] LIMPAR TODAS AS ZONAS E COMECAR UMA NOVA"
-	echo "[ 6 ] ADICIONAR A UM ZONA JA EXISTENTE"
-	echo "[ 7 ] INSTALR ISC-DHCP-SERVER"
-	echo "[ 8 ] INSTALR BIND9"
+	echo "[ 1 ] INSTALR ISC-DHCP-SERVER"
+	echo "[ 2 ] INSTALR BIND9"
+	echo "[ 3 ] CONFIGURAR A REDE"
+	echo "[ 4 ] COLOCAR HOSTNAME NO /ETC/HOSTS"
+	echo "[ 5 ] LIMPA SCOPO/RESERVAS E COMECAR UM NOVO"
+	echo "[ 6 ] ADCIONAR RESERVA"
+	echo "[ 7 ] LIMPAR TODAS AS ZONAS E COMECAR UMA NOVA"
+	echo "[ 8 ] ADICIONAR A UM ZONA JA EXISTENTE"
 	echo "[ 0 ] SAIR"
 	echo -e '\033[05;31mQUAL A OPCAO DESEJADA?\033[00;37m' 
 	read opcao
 
 	case $opcao in
-		1) Rede ;;
-		2) Hostname ;;
-		3) Scopo ;;
-		4) Reserva ;;
-		5) Novo ;;
-		6) Adicionar ;;
-		7) Isc ;;
-		8) Bind ;;
+		1) Isc ;;
+		2) Bind ;;
+		3) Rede ;;
+		4) Hostname ;;
+		5) Scopo ;;
+		6) Reserva ;;
+		7) Novo ;;
+		8) Adicionar ;;
 		0) exit ;;
 	esac
 }
