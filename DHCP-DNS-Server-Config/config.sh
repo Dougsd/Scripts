@@ -46,6 +46,7 @@ Rede(){
 	ls $DIR 2> /dev/null
 
 	if [ $? -ne 0 ]; then
+		clear
 		echo -e "\033[05;31mCONFIGURA APENAS OS DISPOSITIVOS 'ENP'\033[00;37m" 		
 		dispo=$(ip a |grep enp |awk '{print $2}' |head -n 1| sed 's/://g')			
 		echo "Qual o IPv4 desejado?"
@@ -63,6 +64,7 @@ Rede(){
 		ifconfig $dispo inet6 add $ifip6/$ifmask6
 		clear		
 	else
+		clear
 		echo -e "\033[05;31mCONFIGURA APENAS OS DISPOSITIVOS 'ENP'\033[00;37m" 
 		echo "Qual o IPv4 com a mascara reduzida (ex: 192.168.0.1/24): "
 		read ip4
