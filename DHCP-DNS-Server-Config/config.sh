@@ -14,6 +14,7 @@ endip4=$(echo $ip4 |sed 's/192.168.0.//g')
 endip6=$(echo $ip6 |sed 's/.*:://g')
 
 Menu(){
+	echo -e '\033[05;31mEXECUTE COM PERMISSAO ROOT\033[00;37m' 
 	echo "[ 1 ] INSTALR ISC-DHCP-SERVER"
 	echo "[ 2 ] INSTALR BIND9"
 	echo "[ 3 ] CONFIGURAR A REDE"
