@@ -155,7 +155,7 @@ Novo(){
 	zone \"0.0.0.0.0.0.0.0.e.f.a.c.ip6.arpa\" {
 	type master;
 	file \"/etc/bind/db.127\";
-	};" > teste.txt
+	};" > /etc/bind/named.conf.local
 	
 	echo -e "\n;\n; BIND data file for local loopback interface\n;\n\$TTL    604800\n@	IN	SOA	$hostname.ubuntu.local. root.$hostname.ubuntu.local. (\n			      2		; Serial\n			 604800		; Refresh\n			  86400		; Retry\n			2419200		; Expire\n			 604800 )	; Negative Cache TTL\n;" > /etc/bind/db.local
 
