@@ -144,17 +144,17 @@ Novo(){
 	
 	echo    "zone \"ubuntu.local\" {
 	type master;
-	file \"/etc/bind/db.dns\";
+	file \"/etc/bind/db.local\";
 	};
 
 	zone \"0.168.192.in-addr.arpa\" {
 	type master;
-	file \"/etc/bind/db.reverse\";
+	file \"/etc/bind/db.127\";
 	};
 	
 	zone \"0.0.0.0.0.0.0.0.e.f.a.c.ip6.arpa\" {
 	type master;
-	file \"/etc/bind/db.reverse\";
+	file \"/etc/bind/db.127\";
 	};" > teste.txt
 	
 	echo -e "\n;\n; BIND data file for local loopback interface\n;\n\$TTL    604800\n@	IN	SOA	$hostname.ubuntu.local. root.$hostname.ubuntu.local. (\n			      2		; Serial\n			 604800		; Refresh\n			  86400		; Retry\n			2419200		; Expire\n			 604800 )	; Negative Cache TTL\n;" > /etc/bind/db.local
