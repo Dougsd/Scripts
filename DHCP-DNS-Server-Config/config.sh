@@ -139,6 +139,24 @@ Reserva(){
 Novo(){
 	hostname=$(cat /etc/hostname)
 
+	cp /etc/bind/db.local /etc/bind/db.local_old
+	cp /etc/bind/db.127 /etc/bind/db.127_old
+	
+	echo    "zone \"ubuntu.local\" {
+	type master;
+	file \"/etc/bind/db.dns\";
+	};
+
+	zone \"0.168.192.in-addr.arpa\" {
+	type master;
+	file \"/etc/bind/db.reverse\";
+	};
+	
+	zone \"0.0.0.0.0.0.0.0.e.f.a.c.ip6.arpa\" {
+	type master;
+	file \"/etc/bind/db.reverse\";
+	};" > teste.txt
+	
 	echo -e "\n;\n; BIND data file for local loopback interface\n;\n\$TTL    604800\n@	IN	SOA	$hostname.ubuntu.local. root.$hostname.ubuntu.local. (\n			      2		; Serial\n			 604800		; Refresh\n			  86400		; Retry\n			2419200		; Expire\n			 604800 )	; Negative Cache TTL\n;" > /etc/bind/db.local
 
 	echo -e "\n;\n; BIND data file for local loopback interface\n;\n\$TTL   604800\n@	IN	SOA	$hostname.ubuntu.local. root.$hostname.ubuntu.local. (\n			      2		; Serial\n			 604800		; Refresh\n			  86400		; Retry\n			2419200		; Expire\n			 604800 )	; Negative Cache TTL\n;" > /etc/bind/db.127
@@ -147,7 +165,6 @@ Novo(){
 	echo -e "\n$hostname	IN	A	$_ip4\n$hostname	IN	AAAA	$_ip6\nservidor	IN	CNAME	$hostname" >> /etc/bind/db.local
 
 	echo -e '\033[07;31mADICIONANDO  NOVAS MAQUINAS AO DNS\033[00;37m'   
-
 	echo "Diga o NOME da maquina: "
 	read nome
 	echo "Diga o IPv4 da maquina: "
