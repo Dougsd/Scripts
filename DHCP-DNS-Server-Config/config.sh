@@ -180,7 +180,10 @@ Novo(){
 	echo -e "\n	IN	NS	$hostname.\n$auxip4	IN	PTR	$hostname.ubuntu.local.\n$auxip6.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0	IN	PTR	$hostname.ubuntu.local.\n\n$endip4	IN	PTR	$nome.ubuntu.local.\n$endip6.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0	IN	PTR	$nome.ubuntu.local." >>  /etc/bind/db.127
 
 	echo -e "\n$nome	IN	A	$ip4\n$nome	IN	AAAA	$ip6\n$apelido	IN	CNAME	$nome" >> /etc/bind/db.local
+	
 	/etc/init.d/bind9 restart
+	clear
+	/etc/init.d/bind9 status
 	Menu
 }
 
