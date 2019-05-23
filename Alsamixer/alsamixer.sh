@@ -1,7 +1,9 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-#Autor:Karan Luciano (karanluciano1@gmail.com)
-#Script simples com funcionalidade de agilizar a configuração do som a cada vez que o sistema é inicializado
+#author: Karan Luciano
+#describle: Configuracao REDE, Servidor DHCP e DNS
+#version: 0.1
+#license: GNU GENERAL PUBLIC LICENSE
 
 _opcao=$(zenity --list --text "Audio" \
 --radiolist \
