@@ -14,13 +14,16 @@ endip4=$(echo $ip4 |sed 's/192.168.0.//g')
 endip6=$(echo $ip6 |sed 's/.*:://g')
 
 Menu(){
-	echo -e '\033[07;32mEXECUTE COM PERMISSAO ROOT\033[00;37m' 
+	 
+	echo -e '\033[07;32mCONFIGURACOES\033[00;37m##########' 
 	echo "[ 1 ] INSTALR ISC-DHCP-SERVER"
 	echo "[ 2 ] INSTALR BIND9"
 	echo "[ 3 ] CONFIGURAR A REDE"
 	echo "[ 4 ] COLOCAR HOSTNAME NO /ETC/HOSTS"
+	echo -e '\033[07;32mDHCP\033[00;37m##########' 
 	echo "[ 5 ] LIMPA SCOPO/RESERVAS E COMECAR UM NOVO"
 	echo "[ 6 ] ADCIONAR RESERVA"
+	echo -e '\033[07;32mDNS\033[00;37m##########' 
 	echo "[ 7 ] LIMPAR TODAS AS ZONAS E COMECAR UMA NOVA"
 	echo "[ 8 ] ADICIONAR A UM ZONA JA EXISTENTE"
 	echo "[ 0 ] SAIR"
