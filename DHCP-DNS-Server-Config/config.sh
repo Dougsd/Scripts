@@ -45,9 +45,10 @@ Rede(){
 
 	ls $DIR 2> /dev/null
 
-	if [ $? -ne 0 ]; then
+		echo -e "\033[07;31mCONFIGURA APENAS OS DISPOSITIVOS 'ENP'\033[00;37m" 	
+			
+		if [ $? -ne 0 ]; then
 		clear
-		echo -e "\033[07;31mCONFIGURA APENAS OS DISPOSITIVOS 'ENP'\033[00;37m" 		
 		dispo=$(ip a |grep enp |awk '{print $2}' |head -n 1| sed 's/://g')			
 		echo "Qual o IPv4 desejado?"
 		read ifip
@@ -66,17 +67,24 @@ Rede(){
 	else
 		clear
 		echo -e "\033[07;31mCONFIGURA APENAS OS DISPOSITIVOS 'ENP'\033[00;37m" 
-		echo "Qual o IPv4 com a mascara reduzida (ex: 192.168.0.1/24): "
+		echo "Qual o IPv4: "
 		read ip4
+		echo "Qual a mascara?: "
+		read mask
+		source aux.sh
+		wait
+		echo "$mask"
 		echo "Qual o Gateway4: "
 		read gate4
-		echo "Qual o IPv6 com a mascara reduzida (ex: cafe:dead:face::1/64): "
+		echo "Qual o IPv6 com a mascara reduzida (ex: cafe:dead:face::1): "
 		read ip6
+		echo "Qual a mascara?: "
+		read mask6
 		echo "Qual o Gateway6: "
 		read gate6
 		dispo=$(ip a |grep enp |awk '{print $2}' |head -n 1)
 		aux=$(ls /etc/netplan/)
-		echo -e "network:\n   ethernets:\n      $dispo\n         dhcp4: false\n         dhcp6: false\n         addresses: [$ip4, \"$ip6\"]\n         gateway4: $gate4\n         gateway6: $gate6\n   version: 2" > /etc/netplan/$aux	
+		echo -e "network:\n   ethernets:\n      $dispo\n         dhcp4: false\n         dhcp6: false\n         addresses: [$ip4/$mask, \"$ip6/$mask6\"]\n         gateway4: $gate4\n         gateway6: $gate6\n   version: 2" > /etc/netplan/$aux	
 		clear
 		netplan apply
 	fi
@@ -155,7 +163,7 @@ Novo(){
 	zone \"0.0.0.0.0.0.0.0.e.f.a.c.ip6.arpa\" {
 	type master;
 	file \"/etc/bind/db.127\";
-	};" > /etc/bind/named.conf.local
+	};" > teste.txt
 	
 	echo -e "\n;\n; BIND data file for local loopback interface\n;\n\$TTL    604800\n@	IN	SOA	$hostname.ubuntu.local. root.$hostname.ubuntu.local. (\n			      2		; Serial\n			 604800		; Refresh\n			  86400		; Retry\n			2419200		; Expire\n			 604800 )	; Negative Cache TTL\n;" > /etc/bind/db.local
 
@@ -180,10 +188,7 @@ Novo(){
 	echo -e "\n	IN	NS	$hostname.\n$auxip4	IN	PTR	$hostname.ubuntu.local.\n$auxip6.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0	IN	PTR	$hostname.ubuntu.local.\n\n$endip4	IN	PTR	$nome.ubuntu.local.\n$endip6.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0	IN	PTR	$nome.ubuntu.local." >>  /etc/bind/db.127
 
 	echo -e "\n$nome	IN	A	$ip4\n$nome	IN	AAAA	$ip6\n$apelido	IN	CNAME	$nome" >> /etc/bind/db.local
-	
 	/etc/init.d/bind9 restart
-	clear
-	/etc/init.d/bind9 status
 	Menu
 }
 
@@ -207,8 +212,6 @@ Adicionar(){
 	echo -e "\n$nome	IN	A	$ip4\n$nome	IN	AAAA	$ip6\n$apelido	IN	CNAME	$nome" >> /etc/bind/db.local
 	
 	/etc/init.d/bind9 restart
-	clear
-	/etc/init.d/bind9 status
 	Menu
 }
 
