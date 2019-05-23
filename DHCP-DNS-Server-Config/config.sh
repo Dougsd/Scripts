@@ -58,7 +58,7 @@ Rede(){
 		read ifroute
 		echo "Qual o IPv6 desejado?"
 		read ifip6
-		echo "Qual a mascara? (EX 64)"
+		echo "Qual a mascara em prefixo? (EX 64)"
 		read ifmask6		
 		ifconfig $dispo $ifip netmask $ifmask up
 		route add default gw $ifroute
@@ -69,16 +69,16 @@ Rede(){
 		echo -e "\033[07;31mCONFIGURA APENAS OS DISPOSITIVOS 'ENP'\033[00;37m" 
 		echo "Qual o IPv4: "
 		read ip4
-		echo "Qual a mascara?: "
+		echo "Qual a mascara? "
 		read mask
 		source aux.sh
 		wait
 		echo "$mask"
 		echo "Qual o Gateway4: "
 		read gate4
-		echo "Qual o IPv6 com a mascara reduzida (ex: cafe:dead:face::1): "
+		echo "Qual o IPv6? "
 		read ip6
-		echo "Qual a mascara?: "
+		echo "Qual a mascara em prefixo? "
 		read mask6
 		echo "Qual o Gateway6: "
 		read gate6
