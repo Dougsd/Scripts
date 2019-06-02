@@ -8,10 +8,10 @@ Only one linux terminal.
 
 # How to use it?
 Execution permission to DNS_Config with the command<br/>
-`$sudo chmod +x key.sh`<br/>
+`$sudo chmod +x password.sh`<br/>
 
 After that you just run the program:<br/>
-`./key.sh`
+`./password.sh`
 
 Example 10-digit password All combinations
 `oq)key.shHW;sPO`
