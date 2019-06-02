@@ -2,8 +2,8 @@
 
 #####   NAME:               senha.sh
 #####   VERSION:            0.1
-#####   DESCRIPTION:            ALGORITMO PARA GERAR SENHAS
-#####   DATE OF CREATION:       25/05/2019
+#####   DESCRIPTION:        ALGORITMO PARA GERAR SENHAS
+#####   DATE OF CREATION:   31/05/2019
 #####   WRITTEN BY:         KARAN LUCIANO SILVA
 #####   E-MAIL:             karanluciano1@gmail.com         
 #####   DISTRO:             ARCH LINUX
@@ -45,18 +45,18 @@ factorial=1
 clear
 echo  "
          +-----------------------------------+
-         | Escolha as combinações:           |
+         | Choose combinations:              |
          |                                   |
-         | (1) Maiúsculas                    |
-         | (2) Minúsculas                    |
-         | (3) Números                       |
-         | (4) Caracteres especiais          |
-         | (5) Maiúsculas+Minúsculas         |
-         | (6) Maiúsculas+Minúsculas+Números |
-         | (7) Todas as combinações          |
+         | (1) Uppercase                     |
+         | (2) Lowercase                     |
+         | (3) Numbers                       |
+         | (4) Special Characters            |
+         | (5) Uppercase+Lowercase           |
+         | (6) Uppercase+Lowercase+Numbers   |
+         | (7) All combinations              |
          +-----------------------------------+"
-read -p "Digite a opção desejada:" opcao
-read -p "Quantas combinações você deseja (>1)?: " combinacao
+read -p "Enter the desired option:" opcao
+read -p "How many combinations do you want (>1)?: " combinacao
          
 for (( i=1; i<=$combinacao; i++ ))
 do
