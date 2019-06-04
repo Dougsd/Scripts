@@ -6,6 +6,8 @@ You will need the "ZENITY"
 
 Zenity is software that allows you to create several types of simple dialogs for interaction with users in a Linux environment, which can be used in shell scripts.
 
+* Their waiting time depends on the video, usually they are taken from 10 to 25 seconds
+
 # How to use it?
 Install Zenity:<br/>
 In debian-based distributions:<br/>
@@ -14,18 +16,14 @@ In debian-based distributions:<br/>
 In arch-based distributions:<br/>
 `$sudo pacman -S zenity`<br/>
 
---
-
 Execution permission to samba.sh with the command:<br/>
 `$sudo chmod +x youtube.sh`<br/>
 
 Then run the program:<br/>
 `$./youtube.sh`
 
+![alt text](https://github.com/lkaranl/Scripts/raw/master/Youtube/gif-animada.gif)
 
-![alt text](/home/karan/Imagens/gif-animada.gif)
 
----
 
-* Their waiting time depends on the video, usually they are taken from 10 to 25 seconds
 
