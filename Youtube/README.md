@@ -1,6 +1,8 @@
 # YouTube
  Gets information about a particular video of YouTube wich GUI.
 
+![alt text](https://github.com/lkaranl/Scripts/raw/master/Youtube/QR-youtube.png)
+
 # What do you need to use this software?
 You will need the "ZENITY"
 
