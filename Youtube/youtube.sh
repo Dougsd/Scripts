@@ -13,22 +13,22 @@
 function youtube(){
 	(
 
-    #Cria a variavel _video em uma pasta temporaria com o comando "mktemp"
+    #Create the _video variable in a temporary folder with the command "mktemp"
     _video=$(mktemp)
     
-    #Faz o mesmo com o video
+    #Do the same with the video
     _channel=$(mktemp)
     
-    #Cria a variavel _url e armazena uma String nela
+    #Creates the _url variable and stores a String in it
     _url="https://youtube.com/channel"
     
-    #Cria a caixa do zenity, pegando as informacoes do usuario
+    #Creates the zenity box by taking user information
     _a=$(zenity --title="YOUTUBE?" --text "Enter URL" --entry --width="350" --height="50" )
     
-    #Comando wget, 1 sera pego no final do codigo como parametro, -O (maisculo) vai jogar o arquivo na variavel _video, modo silencioso
+	#Command wget, 1 will be taken at the end of the code as parameter, -O (muscle) will play the file in variable _video, silent mode
     wget "$_a" -O "$_video" 2>/dev/null
     
-    #Cria as variaveis com os comandos 
+    #Creates the variables with commands
     _title=$(grep '<title>' "$_video" | sed 's/<[^>]*>//g' | sed 's/ - You.*//g')
     _viesw=$(grep 'watch-view-count' "$_video" | sed 's/<[^>]*>//g')
     _like=$(grep 'like-button-renderer-like-button-unclicked' "$_video" | sed 's/<[^>]*>//g;s/ //g')
@@ -37,13 +37,13 @@ function youtube(){
     _subscriber=$(sed -n '/subscriber-count/{p; q;}' "$_video" |sed 's/.*subscriber-count//g' | sed 's/<[^>]*>//g;s/.*>//g')
     _descricao=$(grep 'watch-description-text' "$_video" |sed 's/.*id="watch-description-text" class=""//g' |sed 's/<[^>]*>//g' |cut -c1-100 |sed 's/>//g')
     
-    #Comando wget juntas as variaveis _url, _id e joga a juncao na variavel _channel
+    #Command wget joins the variables _url, _id and throws the junction in the variable _channel
     wget "$_url/$_id" -O "$_channel" 2>/dev/null
     
-    #Variavel comando  
+    #Variable command
     _tchannel=$(sed -n '/title/{p; q;}' "$_channel" | sed 's/<title> //g')
     
-    #Porcentagem da Barra de progresso Zenity
+    #Zenity Progress Bar Percentage
     echo "5"
     echo "# Make variables..." ; sleep 1
     echo "25"
@@ -53,22 +53,22 @@ function youtube(){
     echo "100"
     echo "# Finish!"
     
-    #Caixa de resultado exibindo as informacoes ao usuario
+    #Result box displaying the information to the user
     zenity --info --title="YOUTUBE" --text="TITLE CHANNEL: $_tchannel\nTITLE VIDEO: $_title\nID VIDEO: $_id\nVIEWS: $_viesw\nLIKES: $_like\nDISLIKES: $_dislike\nINSCRIBLES: $_subscriber\nDESCRIPTION 100 LINES: $_descricao" --width="450" --height="50" 2>/dev/null
     
-    #Barra de progresso Zenity
+    #Zenity progress bar
     ) |
 	    zenity --progress \
 	    --title="Download YouTube" \
 	    --text="Loading..." \
 	    --percentage=0 --width="250" --height="50"
 
-    #Tratamento de erro
+    #Error Handling
     if [ "$?" = -1 ] ; then
 	    zenity --error \
 		    --text="Download canceled."
     fi
     clear
 }
-#Chama a funcao youtube
+#Call YouTube function
 youtube
