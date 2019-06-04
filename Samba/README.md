@@ -10,6 +10,8 @@ You will need the "ZENITY"
 
 Zenity is software that allows you to create several types of simple dialogs for interaction with users in a Linux environment, which can be used in shell scripts.
 
+* The script takes into account that you already have samba installed and configured on your system.
+
 # How to use it?
 Install Zenity:<br/>
 In debian-based distributions:<br/>
