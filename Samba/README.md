@@ -10,11 +10,11 @@ Zenity is software that allows you to create several types of simple dialogs for
 
 # How to use it?
 Install Zenity:<br/>
-In debian-based distributions:<br\>
-`$sudo apt install zenity`<br\>
+In debian-based distributions:<br/>
+`$sudo apt install zenity`<br/>
 
-In arch-based distributions:<br\>
-`$sudo pacman -S zenity`<br\>
+In arch-based distributions:<br/>
+`$sudo pacman -S zenity`<br/>
 
 Execution permission to samba.sh with the command:<br/>
 `$sudo chmod +x samba.sh`<br/>
