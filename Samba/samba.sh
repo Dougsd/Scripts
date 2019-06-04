@@ -17,7 +17,6 @@ if [ $_checks != 0 ]; then
 	echo “Your user is ${_currentuser}. Need be root…”
 	exit 1
 else
-
 	_path=$(zenity --title="PATH" --text "Which path do you want to put?" --entry --width="350" --height="50")
 	_name=$(zenity --title="NAME" --text "What is the name of the share?" --entry --width="350" --height="50")
 
@@ -33,10 +32,8 @@ else
 		_user=$(zenity --title="USER" --text "What is the username?" --entry --width="350" --height="50")
 		zenity --info --text="PLACE THE PASSWORD IN THE TERMINAL" --width="350" --height="50"
 		sudo smbpasswd -a $_user
-		sudo systemctl enable smb nmb
-		sudo systemctl restart smb nmb
-		sudo systemctl status smb nmb
-
 	fi
+	sudo systemctl enable smb nmb
+	sudo systemctl restart smb nmb
 	zenity --info --title="Changing Path" --text="Path changed to: $_path" --width="200" height="200"
 fi
