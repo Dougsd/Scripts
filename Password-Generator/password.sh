@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#####   NAME:               senha.sh
+#####   NAME:               password.sh
 #####   VERSION:            0.2
 #####   DESCRIPTION:        ALGORITMO PARA GERAR SENHAS
 #####   DATE OF CREATION:   31/05/2019
