@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #####   NAME:               senha.sh
-#####   VERSION:            0.1
+#####   VERSION:            0.2
 #####   DESCRIPTION:        ALGORITMO PARA GERAR SENHAS
 #####   DATE OF CREATION:   31/05/2019
 #####   WRITTEN BY:         KARAN LUCIANO SILVA
@@ -25,50 +25,38 @@ export permutacao5=$((${#minusculo[@]}+${#maiusculo[@]}))
 export permutacao6=$((${#minusculo[@]}+${#maiusculo[@]}+${#numeros[@]}))
 export permutacao7=$((${#especiais[@]}+${#minusculo[@]}+${#maiusculo[@]}+${#numeros[@]}))
 
+Menu(){
+    echo "
+    +-----------------------------------+
+    | Choose combinations:              |
+    |                                   |
+    | (1) Uppercase                     |
+    | (2) Lowercase                     |
+    | (3) Numbers                       |
+    | (4) Special Characters            |
+    | (5) Uppercase+Lowercase           |
+    | (6) Uppercase+Lowercase+Numbers   |
+    | (7) All combinations              |
+    +-----------------------------------+"
+    read -p "Enter the desired option:" opcao
+    read -p "How many combinations do you want (>1)?: " combinacao
+    clear
+    echo "Begin-->"
 
-factorial()
-{
-factorial=1
-    if [ $1 > 1 ]; then
-     cnt=0
-     while :
-     do
-      let cnt=$cnt+1
-      factorial=$(echo "$factorial*$cnt" | bc -l)  
-      [ $cnt == $1 ] && break
-     done
-    else
-        echo 1
-    fi
-}; factorial $permutacao
-
-clear
-echo  "
-         +-----------------------------------+
-         | Choose combinations:              |
-         |                                   |
-         | (1) Uppercase                     |
-         | (2) Lowercase                     |
-         | (3) Numbers                       |
-         | (4) Special Characters            |
-         | (5) Uppercase+Lowercase           |
-         | (6) Uppercase+Lowercase+Numbers   |
-         | (7) All combinations              |
-         +-----------------------------------+"
-read -p "Enter the desired option:" opcao
-read -p "How many combinations do you want (>1)?: " combinacao
-         
-for (( i=1; i<=$combinacao; i++ ))
-do
-case $opcao in
-	1) echo -n "${maiusculo[$(((RANDOM%$(($permutacao1-1)))))]}" ;;
-	2) echo -n "${minusculo[$(((RANDOM%$(($permutacao2-1)))))]}" ;;
-	3) echo -n "${numeros[$(((RANDOM%$(($permutacao3-1)))))]}" ;;
-	4) echo -n "${especiais[$(((RANDOM%$(($permutacao4-1)))))]}" ;;
-	5) echo -n "${Mnu[$(((RANDOM%$(($permutacao5-1)))))]}" ;;
-	6) echo -n "${Mnun[$(((RANDOM%$(($permutacao6-1)))))]}" ;;
-	7) echo -n "${all[$(((RANDOM%$(($permutacao7-1)))))]}" ;;
-	*) echo "INVALID NUMBER!" ;;
-esac
-done
-echo
+    for (( i=1; i<=$combinacao; i++ ))
+    do
+        case $opcao in
+            1) echo -ne "\033[00;31m${maiusculo[$(((RANDOM%$(($permutacao1-1)))))]}\033[00;37m" ;;
+            2) echo -ne "\033[00;31m${minusculo[$(((RANDOM%$(($permutacao2-1)))))]}\033[00;37m" ;;
+            3) echo -ne "\033[00;31m${numeros[$(((RANDOM%$(($permutacao3-1)))))]}\033[00;37m" ;;
+            4) echo -ne "\033[00;31m${especiais[$(((RANDOM%$(($permutacao4-1)))))]}\033[00;37m" ;;
+            5) echo -ne "\033[00;31m${Mnu[$(((RANDOM%$(($permutacao5-1)))))]}\033[00;37m" ;;
+            6) echo -ne "\033[00;31m${Mnun[$(((RANDOM%$(($permutacao6-1)))))]}\033[00;37m" ;;
+            7) echo -ne "\033[00;31m${all[$(((RANDOM%$(($permutacao7-1)))))]}\033[00;37m" ;;
+            *) echo "INVALID NUMBER!" ;;
+        esac
+    done
+    echo -e "\n<--end"
+    Menu
+}
+Menu
