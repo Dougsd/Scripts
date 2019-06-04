@@ -54,9 +54,9 @@ Main(){
             6) echo -ne "\033[00;31m${Mnun[$(((RANDOM%$(($permutacao6-1)))))]}\033[00;37m" ;;
             7) echo -ne "\033[00;31m${all[$(((RANDOM%$(($permutacao7-1)))))]}\033[00;37m" \
                 | sed 's/QR-password-generator.png/k/g'\
-                | sed 's/README.md/k/g'\
-                | sed 's/password.sh/k/g'\
-                | sed 's/\\033\[00\;37m/k/g' ;;
+                | sed 's/README.md/l/g'\
+                | sed 's/password.sh/s/g'\
+                | sed 's/\\033\[00\;37m/p/g' ;;
             *) echo -e "\n\033[00;31mINVALID NUMBER!\033[00;37m";;
         esac
     done
