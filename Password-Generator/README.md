@@ -3,6 +3,8 @@
 
 This script has the purpose of randomly generating low and high complexity passwords by mixing lowercase letters, lowercase letters, special characters, numbers, or all in one.
 
+![alt text](https://github.com/lkaranl/Scripts/raw/master/Password-Generator/QR-password-generator.png)
+
 # What do you need to use this software?
 Only one linux terminal.
 
