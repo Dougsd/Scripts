@@ -25,7 +25,7 @@ export permutacao5=$((${#minusculo[@]}+${#maiusculo[@]}))
 export permutacao6=$((${#minusculo[@]}+${#maiusculo[@]}+${#numeros[@]}))
 export permutacao7=$((${#especiais[@]}+${#minusculo[@]}+${#maiusculo[@]}+${#numeros[@]}))
 
-Menu(){
+Main(){
     echo "
     +-----------------------------------+
     | Choose combinations:              |
@@ -38,25 +38,29 @@ Menu(){
     | (6) Uppercase+Lowercase+Numbers   |
     | (7) All combinations              |
     +-----------------------------------+"
-    read -p "Enter the desired option:" opcao
-    read -p "How many combinations do you want (>1)?: " combinacao
+    read -p "Enter the desired option: " opcao
+    read -p "How many combinations do you want (> 1)?: " combinacao
     clear
     echo "Begin-->"
-
     for (( i=1; i<=$combinacao; i++ ))
     do
         case $opcao in
             1) echo -ne "\033[00;31m${maiusculo[$(((RANDOM%$(($permutacao1-1)))))]}\033[00;37m" ;;
             2) echo -ne "\033[00;31m${minusculo[$(((RANDOM%$(($permutacao2-1)))))]}\033[00;37m" ;;
             3) echo -ne "\033[00;31m${numeros[$(((RANDOM%$(($permutacao3-1)))))]}\033[00;37m" ;;
-            4) echo -ne "\033[00;31m${especiais[$(((RANDOM%$(($permutacao4-1)))))]}\033[00;37m" ;;
+            4) echo -ne "\033[00;31m${especiais[$(((RANDOM%$(($permutacao4-1)))))]}\033[00;37m"\
+                | sed 's/\\033\[00\;37m/k/g' ;;
             5) echo -ne "\033[00;31m${Mnu[$(((RANDOM%$(($permutacao5-1)))))]}\033[00;37m" ;;
             6) echo -ne "\033[00;31m${Mnun[$(((RANDOM%$(($permutacao6-1)))))]}\033[00;37m" ;;
-            7) echo -ne "\033[00;31m${all[$(((RANDOM%$(($permutacao7-1)))))]}\033[00;37m" ;;
-            *) echo "INVALID NUMBER!" ;;
+            7) echo -ne "\033[00;31m${all[$(((RANDOM%$(($permutacao7-1)))))]}\033[00;37m" \
+                | sed 's/QR-password-generator.png/k/g'\
+                | sed 's/README.md/k/g'\
+                | sed 's/password.sh/k/g'\
+                | sed 's/\\033\[00\;37m/k/g' ;;
+            *) echo -e "\n\033[00;31mINVALID NUMBER!\033[00;37m";;
         esac
     done
     echo -e "\n<--end"
-    Menu
+    Main
 }
-Menu
+Main
