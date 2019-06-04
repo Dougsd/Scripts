@@ -49,7 +49,7 @@ Main(){
             2) echo -ne "\033[00;31m${minusculo[$(((RANDOM%$(($permutacao2-1)))))]}\033[00;37m" ;;
             3) echo -ne "\033[00;31m${numeros[$(((RANDOM%$(($permutacao3-1)))))]}\033[00;37m" ;;
             4) echo -ne "\033[00;31m${especiais[$(((RANDOM%$(($permutacao4-1)))))]}\033[00;37m"\
-                | sed 's/\\033\[00\;37m/k/g' ;;
+                | sed 's/\\033\[00\;37m/$/g' ;;
             5) echo -ne "\033[00;31m${Mnu[$(((RANDOM%$(($permutacao5-1)))))]}\033[00;37m" ;;
             6) echo -ne "\033[00;31m${Mnun[$(((RANDOM%$(($permutacao6-1)))))]}\033[00;37m" ;;
             7) echo -ne "\033[00;31m${all[$(((RANDOM%$(($permutacao7-1)))))]}\033[00;37m" \
