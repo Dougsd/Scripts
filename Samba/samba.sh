@@ -20,7 +20,7 @@ else
 	_path=$(zenity --title="PATH" --text "Which path do you want to put?" --entry --width="350" --height="50")
 	_name=$(zenity --title="NAME" --text "What is the name of the share?" --entry --width="350" --height="50")
 
-	sudo echo -e  "\n[$_name]
+	sudo echo "[$_name]
 	comment = compar
 	path = $_path
 	browseable = yes
