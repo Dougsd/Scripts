@@ -26,5 +26,4 @@ option=$(zenity --list --text "Audio" \
 		amixer set Master 0% && clear
 		amixer set Headphone playback 0% 
 	fi
-
 clear
